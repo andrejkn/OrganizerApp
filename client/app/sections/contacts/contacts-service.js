@@ -1,5 +1,5 @@
 /**
- * Created by aknezevs on 17/03/15.
+ * Created by Andrej on 17/03/15.
  */
 angular.module('OrganizerApp')
   .factory('contactsService', ['Contacts', function(Contacts) {

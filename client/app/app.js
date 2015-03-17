@@ -1,5 +1,5 @@
 /**
- * Created by aknezevs on 17/03/15.
+ * Created by Andrej on 17/03/15.
  */
 angular.module('underscore', [])
   .factory('_', function() {
@@ -16,18 +16,18 @@ angular.module('OrganizerApp')
     $stateProvider
       .state('contacts', {
         url: "/contacts",
-        templateUrl: "partials/contacts.template.html"
+        templateUrl: "app/sections/contacts/contacts.html"
       })
       .state('contacts.edit', {
         url: "/edit",
-        templateUrl: "sections/contacts/contacts-edit/contacts-edit.html"
+        templateUrl: "app/sections/contacts/contacts-edit/contacts-edit.html"
       })
       .state('contacts.list', {
         url: "/list",
-        templateUrl: "sections/contacts/contacts-list/contacts-list.html"
+        templateUrl: "app/sections/contacts/contacts-list/contacts-list.html"
       })
       .state('contacts.add', {
         url: "/add",
-        templateUrl: "sections/contacts/contacts-add/contacts-add.html"
+        templateUrl: "app/sections/contacts/contacts-add/contacts-add.html"
       });
   });

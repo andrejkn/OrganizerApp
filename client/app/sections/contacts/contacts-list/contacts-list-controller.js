@@ -1,9 +1,9 @@
 /**
- * Created by aknezevs on 17/03/15.
+ * Created by Andrej on 17/03/15.
  */
 
 angular.module('OrganizerApp')
-  .controller('ContactsListCtrl', function($scope, $q,$timeout, contactsService, Contacts) {
+  .controller('ContactsListCtrl', function($scope, contactsService) {
     var vm = this;
     var flag = true;
 
@@ -11,7 +11,7 @@ angular.module('OrganizerApp')
       if (!_.isUndefined(contactToShow)) {
         vm.contacts = [contactToShow];
       } else {
-        contactsService.getContacts(Contacts)
+        contactsService.getContacts()
           .then(function (contacts) {
             vm.contacts = contacts;
             console.log('update contacts view', vm.contacts);
@@ -20,7 +20,7 @@ angular.module('OrganizerApp')
     };
 
     vm.deleteContact = function (contact) {
-      contactsService.deleteContact(contact, Contacts)
+      contactsService.deleteContact(contact)
         .then(function () {
           console.log('Delete UPDATED');
           vm.updateContactListView();
