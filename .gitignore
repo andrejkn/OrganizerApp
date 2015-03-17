@@ -1,0 +1,11 @@
+*/.idea/workspace.xml
+*/.idea/tasks.xml
+**/.idea/
+**/.idea
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+node_modules/
+.idea/*
+.idea
+node_modules/*
+node_modules
