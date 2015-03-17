@@ -1,0 +1,29 @@
+<h4>Edit Contacts</h4>
+<div ng-controller="ContactsListCtrl as contactsListCtrl">
+	<table class="table table-striped">
+		<tr>
+			<th>Name</th>
+			<th>Phone Number</th>
+			<th>Action</th>
+		</tr>
+		<tr ng-repeat="contact in contactsListCtrl.contacts">
+			<td>
+				<div class="form-group">
+					<div class="">
+						<input type="text" class="form-control" id="contactName" ng-model="contact.name"/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<div class="">
+						<input type="tel" class="form-control" id="contactPhoneNumber" ng-model="contact.phoneNumber"/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<button class="btn btn-info" ng-click="contactsListCtrl.modifyContact(contact)">Save</button>
+			</td>
+		</tr>
+	</table>
+</div>
