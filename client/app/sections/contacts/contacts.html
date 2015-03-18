@@ -1,7 +1,15 @@
-<ul class="nav nav-tabs">
+<div ng-controller="ContactsCtrl as contactsCtrl">
 	<h3>Contacts</h3>
-	<li role="presentation" class="" ui-sref="contacts.list"><a href="#">View My Contacts</a></li>
-	<li role="presentation" class="" ui-sref="contacts.edit"><a href="#">Edit My Contacts</a></li>
-	<li role="presentation" class="" ui-sref="contacts.add"><a href="#">Add New Contacts</a></li>
-</ul>
+	<ul class="nav nav-tabs">
+		<li role="presentation" class="{{contactsCtrl.isActive('contacts.list')}}" ng-click="contactsCtrl.switchState('contacts.list')">
+			<a href="#">View My Contacts</a>
+		</li>
+		<li role="presentation" class="{{contactsCtrl.isActive('contacts.edit')}}" ng-click="contactsCtrl.switchState('contacts.edit')">
+			<a href="#">Edit My Contacts</a>
+		</li>
+		<li role="presentation" class="{{contactsCtrl.isActive('contacts.add')}}" ng-click="contactsCtrl.switchState('contacts.add')">
+			<a href="#">Add New Contacts</a>
+		</li>
+	</ul>
+</div>
 <div ui-view></div>

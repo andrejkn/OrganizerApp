@@ -3,7 +3,7 @@
  */
 
 angular.module('OrganizerApp')
-  .controller('ContactAddCtrl', function(contactsService) {
+  .controller('ContactsAddCtrl', function(contactsService, $state, $timeout) {
     var vm = this;
     vm.addContact = function () {
       if(contactsService.isValidContact(vm.newContact)) {
@@ -13,4 +13,16 @@ angular.module('OrganizerApp')
         console.log('Cannot add contact');
       }
     };
+
+    vm.switchState = function(newState) {
+      $state.go(newState);
+    };
+
+    vm.saveAndSwitchState = function(newState) {
+      vm.addContact();
+      $timeout(function() {
+        vm.switchState(newState);
+      }, 3000);
+
+    }
   });

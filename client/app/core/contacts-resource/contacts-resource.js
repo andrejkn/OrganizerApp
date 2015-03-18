@@ -4,10 +4,10 @@
 angular.module('OrganizerApp.ContactsResource', ['ui.router', 'ngResource']);
 
 angular.module('OrganizerApp.ContactsResource')
-  .factory('Contacts', function($resource) {
-    var dbName = 'organizer-app';
+  .factory('Contacts', function($resource, DB) {
+    var dbName = DB.dbName;
     var collectionName = 'contacts';
-    var apiKey = '';
+    var apiKey = DB.apiKey;
 
     // https://api.mongolab.com/api/1/databases/{database}/collections/{collection}?apiKey=myAPIKey
     var resourceUrl = 'https://api.mongolab.com/api/1/databases/' + dbName + '/collections/' + collectionName + '/:id';
