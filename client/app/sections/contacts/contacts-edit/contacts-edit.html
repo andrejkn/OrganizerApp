@@ -1,4 +1,4 @@
-<div ng-controller="ContactsListCtrl as contactsListCtrl" class="panel panel-default">
+<div ng-controller="ContactsEditCtrl as contactsEditCtrl" class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">Edit Contacts</h3>
 	</div>
@@ -9,7 +9,7 @@
 				<th>Phone Number</th>
 				<th>Action</th>
 			</tr>
-			<tr ng-repeat="contact in contactsListCtrl.contacts">
+			<tr ng-repeat="contact in contactsEditCtrl.contacts">
 				<td>
 					<div class="form-group">
 						<div class="">
@@ -25,7 +25,7 @@
 					</div>
 				</td>
 				<td>
-					<button class="btn btn-info" ng-click="contactsListCtrl.modifyContact(contact)">Save</button>
+					<button class="btn btn-info" ng-click="contactsEditCtrl.modifyContactAndSwitchState(contact, 'contacts.list')">Save</button>
 				</td>
 			</tr>
 		</table>

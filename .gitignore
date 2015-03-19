@@ -1,14 +1,5 @@
-*/.idea/workspace.xml
-*/.idea/tasks.xml
-**/.idea/
-**/.idea
-**/.idea/workspace.xml
-**/.idea/tasks.xml
-**/bower_components
-*/config/app-config.js
 
-node_modules/
-.idea/*
-.idea
-node_modules/*
-node_modules
+**/.idea/
+**/bower_components
+**/node_modules
+client/app/core/config/app-config.js

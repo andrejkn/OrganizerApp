@@ -3,26 +3,31 @@
  */
 
 angular.module('OrganizerApp')
-  .controller('ContactsAddCtrl', function(contactsService, $state, $timeout) {
+  .controller('ContactsAddCtrl', function(contactsService, $state) {
     var vm = this;
     vm.addContact = function () {
       if(contactsService.isValidContact(vm.newContact)) {
-        console.log('Adding new contact ' + vm.newContact.name);
-        contactsService.addContact(vm.newContact);
+
+        return contactsService.addContact(vm.newContact)
+          .then(function(addedContact) {
+            console.log('Added new contact ' + addedContact.name);
+            return addedContact;
+          })
+          .then(null, function() {
+            var errMsg = 'Could not add contact ' + vm.newContact.name;
+            console.log(errMsg);
+            throw new Error(errMsg);
+          });
       } else {
         console.log('Cannot add contact');
       }
     };
 
-    vm.switchState = function(newState) {
-      $state.go(newState);
-    };
-
     vm.saveAndSwitchState = function(newState) {
-      vm.addContact();
-      $timeout(function() {
-        vm.switchState(newState);
-      }, 3000);
-
+      vm.addContact()
+        .then(function(addedContact) {
+          console.log('Saving ' + addedContact.name);
+          $state.go(newState);
+        });
     }
   });

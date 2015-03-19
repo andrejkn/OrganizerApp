@@ -6,12 +6,11 @@ angular.module('OrganizerApp')
     var contactsService = {};
 
     contactsService.getContacts = function() {
-      var contacts = Contacts.query()
+      return Contacts.query()
         .$promise
         .then(function(result) {
           return result;
         });
-      return contacts;
     };
 
     contactsService.isValidContact = function(contact) {
@@ -25,7 +24,16 @@ angular.module('OrganizerApp')
       if( !contactsService.isValidContact(contact) ) {
         throw new Error('Error: Trying to add an invalid contact');
       }
-      Contacts.save(contact);
+
+      return Contacts.save(contact)
+        .$promise
+        .then(function(savedContact) {
+          return savedContact;
+        })
+        .then(null, function(error) {
+          console.log(error);
+          throw new Error('Could not save contact');
+        })
     };
 
     contactsService.modifyContact = function(contact) {

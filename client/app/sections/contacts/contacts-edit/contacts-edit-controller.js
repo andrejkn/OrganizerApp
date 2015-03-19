@@ -1,11 +1,10 @@
 /**
- * Created by Andrej on 17/03/15.
+ * Created by andrej on 18/03/15.
  */
 
 angular.module('OrganizerApp')
-  .controller('ContactsListCtrl', function($scope, $timeout, $state, contactsService) {
+  .controller('ContactsEditCtrl', function($scope, $timeout, $state, contactsService) {
     var vm = this;
-
     vm.updateContactListView = function (contactToShow, newView) {
       if (!_.isUndefined(contactToShow)) {
         vm.contacts = [contactToShow];
@@ -24,22 +23,19 @@ angular.module('OrganizerApp')
       }
     };
 
-    vm.deleteContact = function (contact) {
-      return contactsService.deleteContact(contact)
-        .then(function (deletedContact) {
-          console.log('Deleted ' + deletedContact.name);
-          return deletedContact;
+    vm.modifyContact = function (contact) {
+      return contactsService.modifyContact(contact)
+        .then(function (modifiedContact) {
+          return modifiedContact;
         });
     };
 
-    vm.deleteContactAndSwitchState = function(contact, newState) {
-      vm.deleteContact(contact)
-        .then(function() {
-          vm.updateContactListView();
+    vm.modifyContactAndSwitchState = function (contact, newState) {
+      vm.modifyContact(contact)
+        .then(function () {
           $state.go(newState);
-        })
+        });
     };
 
-    // update the contacts list view
     vm.updateContactListView();
   });

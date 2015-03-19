@@ -1,7 +1,7 @@
 /**
  * Created by Andrej on 17/03/15.
  */
-angular.module('OrganizerApp.ContactsResource', ['ui.router', 'ngResource']);
+angular.module('OrganizerApp.ContactsResource', ['ui.router', 'ngResource', 'OrganizerApp.Constants']);
 
 angular.module('OrganizerApp.ContactsResource')
   .factory('Contacts', function($resource, DB) {
