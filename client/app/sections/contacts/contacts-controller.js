@@ -2,7 +2,7 @@
  * Created by andrej on 17/03/15.
  */
 angular.module('OrganizerApp')
-  .controller('ContactsCtrl', function($state) {
+  .controller('ContactsCtrl', function($state, contactsService) {
     var vm = this;
 
     vm.isActive = function(state) {

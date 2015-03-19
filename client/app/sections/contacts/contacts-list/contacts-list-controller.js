@@ -24,6 +24,9 @@ angular.module('OrganizerApp')
       }
     };
 
+    // update the contacts list view
+    vm.updateContactListView();
+
     vm.deleteContact = function (contact) {
       return contactsService.deleteContact(contact)
         .then(function (deletedContact) {
@@ -35,11 +38,16 @@ angular.module('OrganizerApp')
     vm.deleteContactAndSwitchState = function(contact, newState) {
       vm.deleteContact(contact)
         .then(function() {
-          vm.updateContactListView();
+          contactsService.getContacts()
+            .then(function (contacts) {
+              vm.contacts = contacts;
+            });
           $state.go(newState);
         })
     };
 
-    // update the contacts list view
-    vm.updateContactListView();
+    vm.editSingleContact = function(contact, newState) {
+
+    };
+
   });

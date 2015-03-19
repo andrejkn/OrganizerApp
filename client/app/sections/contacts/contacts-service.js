@@ -37,7 +37,7 @@ angular.module('OrganizerApp')
     };
 
     contactsService.modifyContact = function(contact) {
-      return contact.$update({name: contact.name, phoneNumber: contact.phoneNumber})
+      return contact.$update(contact)
         .then(function(modifiedContact) {
           return modifiedContact;
         })

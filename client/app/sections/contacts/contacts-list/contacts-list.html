@@ -8,15 +8,17 @@
 			<tr>
 				<th>Name</th>
 				<th>Phone Number</th>
+				<th>Email</th>
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
 			<tr ng-repeat="contact in contactsListCtrl.contacts">
 				<td ng-bind="contact.name"></td>
 				<td ng-bind="contact.phoneNumber"></td>
+				<td ng-bind="contact.email"></td>
 				<td>
 					<button class="btn btn-success glyphicon glyphicon-pencil"
-						ng-click="contactsListCtrl.updateContactListView(contact, 'contacts.edit')">
+						ng-click="contactsListCtrl.editSingleContact(contact, 'contacts.single.edit')">
 					</button>
 				</td>
 				<td>

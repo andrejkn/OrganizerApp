@@ -7,6 +7,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Phone Number</th>
+				<th>Email</th>
 				<th>Action</th>
 			</tr>
 			<tr ng-repeat="contact in contactsEditCtrl.contacts">
@@ -21,6 +22,13 @@
 					<div class="form-group">
 						<div class="">
 							<input type="tel" class="form-control" id="contactPhoneNumber" ng-model="contact.phoneNumber"/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<div class="">
+							<input type="tel" class="form-control" id="contactEmailAddress" ng-model="contact.email"/>
 						</div>
 					</div>
 				</td>
