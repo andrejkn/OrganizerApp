@@ -33,7 +33,7 @@ angular.module('OrganizerApp')
         .then(null, function(error) {
           console.log(error);
           throw new Error('Could not save contact');
-        })
+        });
     };
 
     contactsService.modifyContact = function(contact) {

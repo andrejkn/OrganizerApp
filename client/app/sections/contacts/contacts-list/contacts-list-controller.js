@@ -16,7 +16,7 @@ angular.module('OrganizerApp')
           })
           .then(function(updatedContacts) {
             vm.contacts = updatedContacts;
-            console.log('update contacts view', vm.contacts);
+            console.log('Update contacts view', vm.contacts);
           });
       }
       if(!_.isUndefined(newView)) {

@@ -1,0 +1,39 @@
+<div>
+	<table class="table table-striped">
+		<tr>
+			<th>Name</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+			<th>Action</th>
+		</tr>
+		<tr ng-repeat="contact in contactsEditFormCtrl.contactsData">
+			<td>
+				<div class="form-group">
+					<div class="">
+						<input type="text" class="form-control" id="contactName" ng-model="contact.name"/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<div class="">
+						<input type="tel" class="form-control" id="contactPhoneNumber" ng-model="contact.phoneNumber"/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<div class="">
+						<input type="email" class="form-control" id="contactEmailAddress" ng-model="contact.email"/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<button class="btn btn-info"
+					ng-click="contactsEditFormCtrl.modifyContactAndSwitchState(contact, 'contacts.list')">
+					Save
+				</button>
+			</td>
+		</tr>
+	</table>
+</div>

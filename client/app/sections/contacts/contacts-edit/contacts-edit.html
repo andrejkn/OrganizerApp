@@ -1,41 +1,10 @@
-<div ng-controller="ContactsEditCtrl as contactsEditCtrl" class="panel panel-default">
+<div class="panel panel-default" ng-controller="ContactsEditCtrl as contactsEditCtrl"
+	ng-init="contactsEditCtrl.updateContactListView()">
 	<div class="panel-heading">
 		<h3 class="panel-title">Edit Contacts</h3>
 	</div>
 	<div class="panel-body">
-		<table class="table table-striped">
-			<tr>
-				<th>Name</th>
-				<th>Phone Number</th>
-				<th>Email</th>
-				<th>Action</th>
-			</tr>
-			<tr ng-repeat="contact in contactsEditCtrl.contacts">
-				<td>
-					<div class="form-group">
-						<div class="">
-							<input type="text" class="form-control" id="contactName" ng-model="contact.name"/>
-						</div>
-					</div>
-				</td>
-				<td>
-					<div class="form-group">
-						<div class="">
-							<input type="tel" class="form-control" id="contactPhoneNumber" ng-model="contact.phoneNumber"/>
-						</div>
-					</div>
-				</td>
-				<td>
-					<div class="form-group">
-						<div class="">
-							<input type="tel" class="form-control" id="contactEmailAddress" ng-model="contact.email"/>
-						</div>
-					</div>
-				</td>
-				<td>
-					<button class="btn btn-info" ng-click="contactsEditCtrl.modifyContactAndSwitchState(contact, 'contacts.list')">Save</button>
-				</td>
-			</tr>
-		</table>
+		<contacts-edit-form class="" contacts-data="contactsEditCtrl.contacts">
+		</contacts-edit-form>
 	</div>
 </div>
