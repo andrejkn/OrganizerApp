@@ -47,7 +47,8 @@ angular.module('OrganizerApp')
     };
 
     vm.editSingleContact = function(contact, newState) {
-
+      contactsService.setContactToEdit(contact);
+      $state.go(newState);
     };
 
   });

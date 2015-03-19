@@ -23,7 +23,4 @@ angular.module('OrganizerApp')
         $state.go(newView);
       }
     };
-
-    // update the contacts list view
-    //vm.updateContactListView();
   });

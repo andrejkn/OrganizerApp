@@ -22,6 +22,10 @@ angular.module('OrganizerApp')
         url: "/edit",
         templateUrl: "app/sections/contacts/contacts-edit/contacts-edit.html"
       })
+      .state('contacts.edit-single', {
+        url: "/edit-single",
+        templateUrl: "app/sections/contacts/contacts-edit/contacts-edit-single.html"
+      })
       .state('contacts.list', {
         url: "/list",
         templateUrl: "app/sections/contacts/contacts-list/contacts-list.html"

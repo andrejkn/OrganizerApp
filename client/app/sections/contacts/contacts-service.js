@@ -4,6 +4,15 @@
 angular.module('OrganizerApp')
   .factory('contactsService', ['Contacts', function(Contacts) {
     var contactsService = {};
+    var contactToEdit = null;
+
+    contactsService.setContactToEdit = function(contact) {
+      contactToEdit = contact;
+    };
+
+    contactsService.getContactToEdit = function() {
+      return contactToEdit;
+    };
 
     contactsService.getContacts = function() {
       return Contacts.query()
