@@ -2,9 +2,20 @@
  * Created by Andrej on 17/03/15.
  */
 angular.module('OrganizerApp')
-  .factory('contactsService', ['Contacts', function(Contacts) {
+  .factory('ContactsService', ['Contacts', function(Contacts) {
     var contactsService = {};
     var contactToEdit = null;
+    contactsService.contacts = [];
+
+    contactsService.findContact = function(focusContact) {
+      var index;
+      for(index = 0; index < contactsService.contacts.length; index += 1) {
+        var singleContact = contactsService.contacts[index];
+        if(focusContact['_id']['$oid'] === singleContact['_id']['$oid']) {
+          return index;
+        }
+      }
+    };
 
     contactsService.setContactToEdit = function(contact) {
       contactToEdit = contact;
@@ -17,8 +28,11 @@ angular.module('OrganizerApp')
     contactsService.getContacts = function() {
       return Contacts.query()
         .$promise
-        .then(function(result) {
-          return result;
+        .then(function(contacts) {
+          contactsService.contacts = contacts;
+        })
+        .then(null, function(error) {
+          console.log(error);
         });
     };
 
@@ -37,7 +51,7 @@ angular.module('OrganizerApp')
       return Contacts.save(contact)
         .$promise
         .then(function(savedContact) {
-          return savedContact;
+          contactsService.contacts.push(savedContact);
         })
         .then(null, function(error) {
           console.log(error);
@@ -45,25 +59,28 @@ angular.module('OrganizerApp')
         });
     };
 
-    contactsService.modifyContact = function(contact) {
-      return contact.$update(contact)
+    contactsService.modifyContact = function(focusContact) {
+      return focusContact.$update(focusContact)
         .then(function(modifiedContact) {
-          return modifiedContact;
+          var index = contactsService.findContact(focusContact);
+          if(index) {
+            contactsService.contacts[index] = modifiedContact;
+          }
         })
-        .then(null, function(error) {
-          console.log(error);
-          throw new Error('Could not update contact');
+        .then(null, function() {
+          console.log('Could not update contact');
         });
     };
 
     contactsService.deleteContact = function(contact) {
       return contact.$delete()
-        .then(function(res) {
-          return res;
+        .then(function(deletedContact) {
+          var index = contactsService.findContact(deletedContact);
+          contactsService.contacts.splice(index, 1);
         })
-        .then(null, function(error) {
-          console.log(error);
-          throw new Error('Could not delete contact');
+        .then(null, function() {
+          // NEED TO HANDLE ERROR
+          console.log('Cannot delete contact ...');
         });
     };
 

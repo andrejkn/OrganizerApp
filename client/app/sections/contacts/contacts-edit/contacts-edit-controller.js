@@ -3,24 +3,12 @@
  */
 
 angular.module('OrganizerApp')
-  .controller('ContactsEditCtrl', function($scope, $timeout, $state, contactsService) {
+  .controller('ContactsEditCtrl', function(ContactsService) {
     var vm = this;
 
-    vm.updateContactListView = function (contactToShow, newView) {
-      if (!_.isUndefined(contactToShow)) {
-        vm.contacts = [contactToShow];
-      } else {
-        contactsService.getContacts()
-          .then(function (contacts) {
-            return contacts;
-          })
-          .then(function(updatedContacts) {
-            vm.contacts = updatedContacts;
-            console.log('update contacts view', vm.contacts);
-          });
-      }
-      if(!_.isUndefined(newView)) {
-        $state.go(newView);
-      }
-    };
+    ContactsService
+      .getContacts()
+      .then(function() {
+        vm.contacts = ContactsService.contacts;
+      })
   });

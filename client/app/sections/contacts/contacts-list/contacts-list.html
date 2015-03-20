@@ -18,12 +18,12 @@
 				<td ng-bind="contact.email"></td>
 				<td>
 					<button class="btn btn-success glyphicon glyphicon-pencil"
-						ng-click="contactsListCtrl.editSingleContact(contact, 'contacts.edit-single')">
+						ng-click="contactsListCtrl.editSingleContact(contact)" ui-sref="contacts.edit-single">
 					</button>
 				</td>
 				<td>
 					<button class="btn btn-danger glyphicon glyphicon-trash"
-						ng-click="contactsListCtrl.deleteContactAndSwitchState(contact, 'contacts.list')">
+						ng-click="contactsListCtrl.deleteContact(contact)">
 					</button>
 				</td>
 			</tr>
