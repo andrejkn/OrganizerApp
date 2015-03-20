@@ -6,7 +6,7 @@ angular.module('OrganizerApp')
     var vm = this;
 
     vm.isActive = function(state) {
-      if( $state.is(state)) {
+      if( $state.is(state) ) {
         return 'active';
       }
     };
@@ -14,5 +14,4 @@ angular.module('OrganizerApp')
     vm.switchState = function(newState) {
       $state.go(newState);
     };
-
   });

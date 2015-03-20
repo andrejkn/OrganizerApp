@@ -11,7 +11,7 @@ angular.module('OrganizerApp', ['ui.router', 'underscore', 'ngResource', 'Organi
 angular.module('OrganizerApp')
   .config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/contacts");
+    $urlRouterProvider.otherwise("/contacts/list");
 
     $stateProvider
       .state('contacts', {
