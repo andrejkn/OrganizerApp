@@ -76,7 +76,9 @@ angular.module('OrganizerApp')
       return contact.$delete()
         .then(function(deletedContact) {
           var index = contactsService.findContact(deletedContact);
-          contactsService.contacts.splice(index, 1);
+          if(index) {
+            contactsService.contacts.splice(index, 1);
+          }
         })
         .then(null, function() {
           // NEED TO HANDLE ERROR
