@@ -5,7 +5,7 @@ var port = Number(process.env.PORT || 8000);
 var express = require('express');
 var app = express();
 
-var appDir = __dirname + '/client';
+var appDir = __dirname + '/../client';
 
 app.use(express.static(appDir));
 var server = app.listen(port, function() {

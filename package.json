@@ -8,9 +8,9 @@
     "url": "https://github.com/andrejkn/OrganizerApp/issues"
   },
   "homepage": "https://github.com/andrejkn/OrganizerApp",
-  "main": "server.js",
+  "main": "server/app.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/app.js",
     "postinstall": "bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
