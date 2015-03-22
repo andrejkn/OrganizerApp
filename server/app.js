@@ -7,8 +7,6 @@ var app = express();
 
 var appDir = __dirname + '/../client';
 
-console.log(appDir);
-
 app.use(express.static(appDir));
 var server = app.listen(port, function() {
   console.log('Listening on port %d', server.address().port);
