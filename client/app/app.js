@@ -16,22 +16,22 @@ angular.module('OrganizerApp')
     $stateProvider
       .state('contacts', {
         url: "/contacts",
-        templateUrl: "app/sections/contacts/contacts.html"
+        templateUrl: "/app/sections/contacts/contacts.html"
       })
       .state('contacts.edit', {
         url: "/edit",
-        templateUrl: "app/sections/contacts/contacts-edit/contacts-edit.html"
+        templateUrl: "/app/sections/contacts/contacts-edit/contacts-edit.html"
       })
       .state('contacts.edit-single', {
         url: "/edit-single",
-        templateUrl: "app/sections/contacts/contacts-edit/contacts-edit-single.html"
+        templateUrl: "/app/sections/contacts/contacts-edit/contacts-edit-single.html"
       })
       .state('contacts.list', {
         url: "/list",
-        templateUrl: "app/sections/contacts/contacts-list/contacts-list.html"
+        templateUrl: "/app/sections/contacts/contacts-list/contacts-list.html"
       })
       .state('contacts.add', {
         url: "/add",
-        templateUrl: "app/sections/contacts/contacts-add/contacts-add.html"
+        templateUrl: "/app/sections/contacts/contacts-add/contacts-add.html"
       });
   });

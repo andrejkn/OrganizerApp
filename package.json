@@ -24,5 +24,8 @@
   "homepage": "https://github.com/andrejkn/OrganizerApp",
   "dependencies": {
     "express": "~3.x"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
