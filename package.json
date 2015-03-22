@@ -1,7 +1,13 @@
 {
   "name": "OrganizerApp",
   "version": "0.0.1",
+  "author": "Andrej Knezevski",
   "description": "Personal organizer for your contacts, notes, calendars and many more.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrejkn/OrganizerApp/issues"
+  },
+  "homepage": "https://github.com/andrejkn/OrganizerApp",
   "main": "server/app.js",
   "scripts": {
     "start": "node server/app.js",
@@ -16,12 +22,6 @@
     "AngularJS",
     "OrganizerApp"
   ],
-  "author": "Andrej Knezevski",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/andrejkn/OrganizerApp/issues"
-  },
-  "homepage": "https://github.com/andrejkn/OrganizerApp",
   "dependencies": {
     "express": "~3.x"
   },
