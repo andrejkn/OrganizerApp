@@ -2,7 +2,7 @@
  * Created by Andrej on 17/03/15.
  */
 angular.module('OrganizerApp')
-  .factory('ContactsService', ['Contacts', function(Contacts) {
+  .factory('ContactsService', ['Contacts', '$log', function(Contacts, $log) {
     var contactsService = {};
     var contactToEdit = null;
     contactsService.contacts = [];
@@ -32,7 +32,7 @@ angular.module('OrganizerApp')
           contactsService.contacts = contacts;
         })
         .then(null, function(error) {
-          console.log(error);
+          $log(error);
         });
     };
 
@@ -40,6 +40,7 @@ angular.module('OrganizerApp')
       return (!_.isUndefined(contact) &&
       !_.isNull(contact) &&
       contact.hasOwnProperty('name') &&
+      contact.hasOwnProperty('email') &&
       contact.hasOwnProperty('phoneNumber'));
     };
 
