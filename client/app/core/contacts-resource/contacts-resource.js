@@ -10,7 +10,10 @@ angular.module('OrganizerApp.ContactsResource')
     var apiKey = DB.apiKey;
 
     var resourceUrl = 'http://localhost:8000/contacts/:id';
+    console.log(resourceUrl);
     return $resource(resourceUrl, {
+      id:'@id'
+    }, {
       update: {method:'PUT', isArray: false},
       delete: {method:'DELETE', isArray: false}
     });
