@@ -9,13 +9,8 @@ angular.module('OrganizerApp.ContactsResource')
     var collectionName = 'contacts';
     var apiKey = DB.apiKey;
 
-    // https://api.mongolab.com/api/1/databases/{database}/collections/{collection}?apiKey=myAPIKey
-    var resourceUrl = 'https://api.mongolab.com/api/1/databases/' + dbName + '/collections/' + collectionName + '/:id';
-    console.log(resourceUrl);
+    var resourceUrl = 'http://localhost:8000/contacts/:id';
     return $resource(resourceUrl, {
-      apiKey: apiKey,
-      id:'@_id.$oid'
-    }, {
       update: {method:'PUT', isArray: false},
       delete: {method:'DELETE', isArray: false}
     });
