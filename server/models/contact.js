@@ -12,50 +12,54 @@ var contactSchema = new mongoose.Schema({
 
 var ContactModel = mongoose.model('ContactModel', contactSchema);
 
+var makeErrorHandler = function() {
+  return function(error) {
+    //throw new Error('Error Model: Cannot update contact');
+    throw new Error(error.message);
+  }
+};
+
 var createContact = function(contact) {
   return ContactModel.create(contact)
     .then(function(createdContact) {
       return createdContact;
     })
-    .then(null, function(error) {
-      console.log(error);
-      throw new Error('Cannot create contact');
-    })
+    .then(null, makeErrorHandler())
 };
 
 var getContacts = function() {
   var query = ContactModel.find({});
   return query.exec()
     .then(function (data) {
-      console.dir(data);
       return data;
     })
-    .then(null, function(error) {
-      console.log(error);
-    });
+    .then(null, makeErrorHandler());
 };
 
-var getContact = function(contactId) {
-  var query = ContactModel.findOne({id: contactId});
-  return query.exec()
-    .then(function (data) {
-      console.dir(data);
-    })
-    .then(null, function(error) {
-      console.log(error);
-    });
-};
 
 var updateContact = function(contact, newContact) {
-
+  var query = ContactModel.update({_id: contact._id}, newContact);
+  return query.exec()
+    .then(function(changedContact) {
+      return changedContact;
+    })
+    .then(null, makeErrorHandler());
 };
 
-var deleteContact = function(contact) {
-
+var deleteContact = function(contactId) {
+  var query = ContactModel.findOneAndRemove({_id: contactId});
+  return query.exec()
+    .then(function(deletedContact) {
+      console.log('deleting');
+      console.log(deletedContact);
+      return deletedContact;
+    })
+    .then(null, makeErrorHandler());
 };
 
 module.exports = {
   createContact: createContact,
   getContacts: getContacts,
-  getContact: getContact
+  updateContact: updateContact,
+  deleteContact: deleteContact
 };
