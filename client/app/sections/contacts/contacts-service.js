@@ -5,16 +5,26 @@
 'use strict';
 
 angular.module('OrganizerApp')
-  .factory('ContactsService', ['Contacts', '$log', function(Contacts, $log) {
+  .factory('ContactsService', ['Contacts', '$log', function(Contacts) {
     var contactsService = {};
     var contactToEdit = null;
     contactsService.contacts = [];
+
+
+    var makeErrorHandler = function(message) {
+      return function(error) {
+        console.log('Error: ' + message);
+        console.log('Details\n--------------');
+        console.log(error);
+        console.log('--------------');
+      };
+    };
 
     contactsService.findContact = function(focusContact) {
       var index;
       for(index = 0; index < contactsService.contacts.length; index += 1) {
         var singleContact = contactsService.contacts[index];
-        if(focusContact['_id']['$oid'] === singleContact['_id']['$oid']) {
+        if(focusContact['id'] === singleContact['id']) {
           return index;
         }
       }
@@ -34,9 +44,7 @@ angular.module('OrganizerApp')
         .then(function(contacts) {
           contactsService.contacts = contacts;
         })
-        .then(null, function(error) {
-          $log(error);
-        });
+        .then(null, makeErrorHandler());
     };
 
     contactsService.isValidContact = function(contact) {
@@ -48,46 +56,34 @@ angular.module('OrganizerApp')
     };
 
     contactsService.addContact = function(contact) {
-      if( !contactsService.isValidContact(contact) ) {
-        throw new Error('Error: Trying to add an invalid contact');
-      }
-
       return Contacts.save(contact)
         .$promise
         .then(function(savedContact) {
           contactsService.contacts.push(savedContact);
         })
-        .then(null, function(error) {
-          console.log(error);
-          throw new Error('Could not save contact');
-        });
+        .then(null, makeErrorHandler('Could not create contact'));
     };
 
     contactsService.modifyContact = function(focusContact) {
       return focusContact.$update(focusContact)
         .then(function(modifiedContact) {
           var index = contactsService.findContact(focusContact);
-          if(index) {
+          if(!_.isUndefined(index) && index >= 0) {
             contactsService.contacts[index] = modifiedContact;
           }
         })
-        .then(null, function() {
-          console.log('Could not update contact');
-        });
+        .then(null, makeErrorHandler('Could not update contact'));
     };
 
     contactsService.deleteContact = function(contact) {
       return contact.$delete()
         .then(function(deletedContact) {
           var index = contactsService.findContact(deletedContact);
-          if(index) {
+          if(!_.isUndefined(index) && index >= 0) {
             contactsService.contacts.splice(index, 1);
           }
         })
-        .then(null, function() {
-          // NEED TO HANDLE ERROR
-          console.log('Cannot delete contact ...');
-        });
+        .then(null, makeErrorHandler('Could not delete contact'));
     };
 
     return contactsService;

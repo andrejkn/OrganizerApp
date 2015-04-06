@@ -2,20 +2,14 @@
  * Created by andrej on 21/03/15.
  */
 var express = require('express');
-
-var routes = require('./routes');
-var config = require('../config');
-
 var bodyParser = require('body-parser');
-
+var config = require('../config');
+var app = express();
 var port = Number(process.env.PORT || config.server.listenPort);
 
-var app = express();
-
-//app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(express.static(config.server.staticUrl));
-app.use(routes);
+app.use(require('./routes'));
 
 var server = app.listen(port, function() {
   console.log('Listening on port %d', server.address().port);
