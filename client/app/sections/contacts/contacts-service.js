@@ -1,6 +1,9 @@
 /**
  * Created by Andrej on 17/03/15.
  */
+
+'use strict';
+
 angular.module('OrganizerApp')
   .factory('ContactsService', ['Contacts', '$log', function(Contacts, $log) {
     var contactsService = {};

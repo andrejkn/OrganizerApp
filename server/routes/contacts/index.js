@@ -1,6 +1,9 @@
 /**
  * Created by Andrej on 27/03/15.
  */
+
+'use strict';
+
 var express = require('express');
 var router = express.Router();
 var models = require('../../models');
